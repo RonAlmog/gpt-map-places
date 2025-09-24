@@ -20,8 +20,8 @@ interface MarkerData {
 
 const Loader = () => {
   return (
-    <div className="h-16 w-full flex items-center justify-center">
-      <Loader2 className="size-8 text-slate-300 animate-spin" />
+    <div className="absolute z-[12000] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <Loader2 className="size-16 text-sky-400 animate-spin" />
     </div>
   );
 };
@@ -32,7 +32,7 @@ const MapComponent: FC = () => {
   const [loading, setLoading] = useState(false);
   const [question, setQuestion] = useState<string | null>(null);
 
-  const mapRef = useRef<any | null>(null);
+  //const mapRef = useRef<any | null>(null);
 
   const ZoomHandler: FC = () => {
     const map = useMap();
@@ -99,10 +99,6 @@ const MapComponent: FC = () => {
         style={{ height: "100vh", width: "100vw" }}
         center={[43.83798, -79.46201]}
         zoom={12}
-        // boundsOptions={{
-        //   center: [48.837, -79.462],
-        //   zoom: 11,
-        // }}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
@@ -126,6 +122,7 @@ const MapComponent: FC = () => {
           <input
             type="text"
             value={inputValue}
+            placeholder="e.g. what is the tallest building in Toronto?"
             onChange={(e) => setInputValue(e.target.value)}
             className="flex-grow p-2 border border-gray-500 rounded-md text-black bg-white"
             onKeyDown={(e) => {
