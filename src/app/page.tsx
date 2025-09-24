@@ -1,10 +1,10 @@
 "use client";
 import dynamic from "next/dynamic";
 
-const DynamicMapComponent = dynamic(() => import("./components/MapComponent"), {
+const DynamicMapComponent = dynamic(() => import("./components/map"), {
   ssr: false,
 });
 
 export default function Home() {
-  return <div>hello</div>;
+  return <DynamicMapComponent />;
 }
