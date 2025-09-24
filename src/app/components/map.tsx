@@ -127,14 +127,14 @@ const MapComponent: FC = () => {
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            className="flex-grow p-2 border rounded-md text-black"
+            className="flex-grow p-2 border border-gray-500 rounded-md text-black bg-white"
             onKeyDown={(e) => {
               if (e.key === "Enter") handleSubmit();
             }}
           />
           <button
             onClick={handleSubmit}
-            className="p-2 ml-2 bg-blue-500 text-white"
+            className="p-2 ml-2 bg-blue-500 text-white rounded-md"
           >
             Submit
           </button>
