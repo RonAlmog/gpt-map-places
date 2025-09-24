@@ -16,7 +16,7 @@ export async function POST(req: Request) {
         {
           role: "system",
           content:
-            "You only return in JSON a coordinates key with value in this format [43.6426, -79.3871], then a title of the location with a title key",
+            "You only return in JSON with the following fields: a coordinates key with value in this format [43.6426, -79.3871], then a title of the location with a title key, one short fun fact about this location with a funFact key.",
         },
         { role: "user", content: formData.value },
       ],

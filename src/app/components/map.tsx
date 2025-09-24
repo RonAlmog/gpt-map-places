@@ -16,6 +16,7 @@ import "leaflet-defaulticon-compatibility";
 interface MarkerData {
   coordinates: [number, number];
   title: string;
+  funFact: string;
 }
 
 const Loader = () => {
@@ -31,6 +32,7 @@ const MapComponent: FC = () => {
   const [markerData, setMarkerData] = useState<MarkerData | null>(null);
   const [loading, setLoading] = useState(false);
   const [question, setQuestion] = useState<string | null>(null);
+  const [openPopup, setOpenPopup] = useState(true);
 
   //const mapRef = useRef<any | null>(null);
 
@@ -79,6 +81,7 @@ const MapComponent: FC = () => {
       // parse the data
       const data = await response.json();
       setMarkerData(data);
+      console.log({ openPopup });
     } catch (error) {
       console.error(error);
     }
@@ -104,7 +107,21 @@ const MapComponent: FC = () => {
 
         {markerData && markerData.coordinates && (
           <Marker position={markerData?.coordinates}>
-            <Popup>{markerData.title}</Popup>
+            {openPopup && (
+              <Popup autoClose={false} closeOnClick={false}>
+                <div style={{ width: "200px" }}>
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <h3 className="font-bold text-xl" style={{ margin: "0" }}>
+                      {markerData.title}
+                    </h3>
+                  </div>
+
+                  <p style={{ marginTop: "8px" }}>{markerData.funFact}</p>
+                </div>
+              </Popup>
+            )}
           </Marker>
         )}
         <ZoomHandler />
